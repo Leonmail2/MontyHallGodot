@@ -53,9 +53,9 @@ func check_if_player_wins():
 	trial_finished = true
 	var result = MonteHallLogic.check_if_player_wins()
 	if result == true:
-		hud.set_text("you win a car!")
+		hud.set_text("you win a car!\npress r to reset")
 	else:
-		hud.set_text("you win a goat")
+		hud.set_text("you win a goat\npress r to reset")
 	for i in range(3):
 		if i != MonteHallLogic.player_second_door_choice and i != MonteHallLogic.revealed_door:
 			stage.reveal_door(i)

@@ -83,22 +83,15 @@ rect_min_size = Vector2( 0, 120 )
 mouse_filter = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel"]
 anchor_bottom = 1.0
-margin_right = 272.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_right = 101.0
+custom_constants/margin_left = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel/HBoxContainer"]
-margin_right = 131.0
-margin_bottom = 120.0
-custom_constants/margin_right = 10
-custom_constants/margin_left = 20
-
-[node name="Reset" type="Button" parent="VBoxContainer/Panel/HBoxContainer/MarginContainer"]
+[node name="Reset" type="Button" parent="VBoxContainer/Panel/MarginContainer"]
 margin_left = 20.0
 margin_top = 35.0
 margin_right = 121.0
@@ -116,17 +109,89 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Panel/HBoxContainer"]
-margin_left = 135.0
-margin_right = 265.0
-margin_bottom = 120.0
-custom_constants/margin_right = 20
-custom_constants/margin_left = 10
+[node name="DataGrid" type="GridContainer" parent="VBoxContainer/Panel"]
+anchor_left = 0.499354
+anchor_top = 0.00551453
+anchor_right = 0.499354
+anchor_bottom = 1.00551
+margin_left = -216.5
+margin_right = 216.5
+rect_clip_content = true
+custom_constants/vseparation = 20
+custom_constants/hseparation = 60
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Quit" type="Button" parent="VBoxContainer/Panel/HBoxContainer/MarginContainer2"]
-margin_left = 10.0
+[node name="GoatsWon" type="Label" parent="VBoxContainer/Panel/DataGrid"]
+margin_top = 13.0
+margin_right = 190.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Goats won from switching: "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CarsWon" type="Label" parent="VBoxContainer/Panel/DataGrid"]
+margin_left = 250.0
+margin_top = 13.0
+margin_right = 433.0
+margin_bottom = 36.0
+rect_pivot_offset = Vector2( 105.667, 18.0946 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Cars won from switching: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoatsWon2" type="Label" parent="VBoxContainer/Panel/DataGrid"]
+margin_top = 83.0
+margin_right = 190.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Goats won from not switching: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CarsWon2" type="Label" parent="VBoxContainer/Panel/DataGrid"]
+margin_left = 250.0
+margin_top = 83.0
+margin_right = 433.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Cars won from not switching: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -119.852
+margin_top = 0.661743
+margin_right = 0.147949
+margin_bottom = 0.661743
+custom_constants/margin_right = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="VBoxContainer/Panel/MarginContainer2"]
 margin_top = 35.0
-margin_right = 110.0
+margin_right = 100.0
 margin_bottom = 85.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -140,72 +205,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DataGrid" type="GridContainer" parent="VBoxContainer/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -535.0
-margin_top = 1.0
-margin_right = 1.0
-rect_clip_content = true
-custom_constants/vseparation = 20
-custom_constants/hseparation = 60
-columns = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GoatsWon" type="Label" parent="VBoxContainer/Panel/DataGrid"]
-margin_top = 13.0
-margin_right = 238.0
-margin_bottom = 36.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-custom_fonts/font = SubResource( 5 )
-text = "Goats won from switching: "
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CarsWon" type="Label" parent="VBoxContainer/Panel/DataGrid"]
-margin_left = 298.0
-margin_top = 13.0
-margin_right = 536.0
-margin_bottom = 36.0
-rect_pivot_offset = Vector2( 105.667, 18.0946 )
-size_flags_horizontal = 3
-size_flags_vertical = 6
-custom_fonts/font = SubResource( 5 )
-text = "Cars won from switching: "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GoatsWon2" type="Label" parent="VBoxContainer/Panel/DataGrid"]
-margin_top = 82.0
-margin_right = 238.0
-margin_bottom = 105.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-custom_fonts/font = SubResource( 5 )
-text = "Goats won from not switching: "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CarsWon2" type="Label" parent="VBoxContainer/Panel/DataGrid"]
-margin_left = 298.0
-margin_top = 82.0
-margin_right = 536.0
-margin_bottom = 105.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-custom_fonts/font = SubResource( 5 )
-text = "Cars won from not switching: "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[connection signal="button_up" from="VBoxContainer/Panel/HBoxContainer/MarginContainer/Reset" to="." method="_on_Button_button_up"]
-[connection signal="button_up" from="VBoxContainer/Panel/HBoxContainer/MarginContainer2/Quit" to="." method="_on_Quit_button_up"]
+[connection signal="button_up" from="VBoxContainer/Panel/MarginContainer/Reset" to="." method="_on_Button_button_up"]
+[connection signal="button_up" from="VBoxContainer/Panel/MarginContainer2/Quit" to="." method="_on_Quit_button_up"]

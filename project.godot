@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 MonteHallLogic="*res://Scenes/MonteHallLogic/MonteHallLogic.tscn"
 HistoryManager="*res://Scenes/HistoryManager/HistoryManager.tscn"
 StageLogicInterface="*res://Scenes/StageLogicInterface/StageLogicInterface.tscn"
+WindowAndSettingsManager="*res://Scenes/WindowAndSettingsManager/WindowAndSettingsManager.gd"
 
 [debug]
 
