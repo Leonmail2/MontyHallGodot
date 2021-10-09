@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/StageLogicInterface/StageLogicInterface.gd" type="Script" id=1]
+
+[node name="StageLogicInterface" type="Node"]
+script = ExtResource( 1 )
+
+[node name="PlayAgainTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="PlayAgainTimer" to="." method="_on_PlayAgainTimer_timeout"]
