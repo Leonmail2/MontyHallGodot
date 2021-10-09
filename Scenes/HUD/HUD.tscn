@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/HUD/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/bebas_neue/BebasNeue-Regular.ttf" type="DynamicFontData" id=2]
@@ -8,20 +8,42 @@ size = 60
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 30
-font_data = ExtResource( 2 )
-
-[sub_resource type="InputEventAction" id=3]
-action = "reset_simulation"
-
-[sub_resource type="ShortCut" id=4]
-shortcut = SubResource( 3 )
-
-[sub_resource type="DynamicFont" id=5]
 size = 18
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 22
+font_data = ExtResource( 2 )
+
+[sub_resource type="InputEventAction" id=13]
+action = "reset_simulation"
+
+[sub_resource type="ShortCut" id=14]
+shortcut = SubResource( 13 )
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+uniform float amount: hint_range(0.0, 5.0);
+
+void fragment() {
+	COLOR.rgb = textureLod(SCREEN_TEXTURE, SCREEN_UV, amount).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/amount = 4.0
+
+[sub_resource type="DynamicFont" id=8]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+font_data = ExtResource( 2 )
+
 [node name="HUD" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -30,7 +52,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="HUD" type="VBoxContainer" parent="."]
+pause_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -39,13 +62,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="VBoxContainer"]
+[node name="Control" type="Control" parent="HUD"]
 margin_right = 1024.0
 margin_bottom = 476.0
 mouse_filter = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -0.8909
@@ -59,7 +82,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/Control/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUD/Control/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
@@ -69,13 +92,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DisplayText" type="Label" parent="VBoxContainer/Control/MarginContainer/VBoxContainer2"]
+[node name="DisplayText" type="Label" parent="HUD/Control/MarginContainer/VBoxContainer2"]
 margin_right = 984.0
 margin_bottom = 72.0
 custom_fonts/font = SubResource( 1 )
 align = 1
 
-[node name="Panel" type="Panel" parent="VBoxContainer"]
+[node name="Panel" type="Panel" parent="HUD"]
+pause_mode = 1
 margin_top = 480.0
 margin_right = 1024.0
 margin_bottom = 600.0
@@ -83,40 +107,14 @@ rect_min_size = Vector2( 0, 120 )
 mouse_filter = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel"]
+[node name="DataGrid" type="GridContainer" parent="HUD/Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_right = 101.0
-custom_constants/margin_left = 20
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Reset" type="Button" parent="VBoxContainer/Panel/MarginContainer"]
-margin_left = 20.0
-margin_top = 35.0
-margin_right = 121.0
-margin_bottom = 85.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_min_size = Vector2( 100, 50 )
-hint_tooltip = "Resets the current simulation and begins a new one."
-size_flags_horizontal = 5
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
-shortcut = SubResource( 4 )
-text = "Reset (R)"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DataGrid" type="GridContainer" parent="VBoxContainer/Panel"]
-anchor_left = 0.499354
-anchor_top = 0.00551453
-anchor_right = 0.499354
-anchor_bottom = 1.00551
 margin_left = -216.5
 margin_right = 216.5
 rect_clip_content = true
+size_flags_horizontal = 5
 custom_constants/vseparation = 20
 custom_constants/hseparation = 60
 columns = 2
@@ -124,20 +122,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GoatsWon" type="Label" parent="VBoxContainer/Panel/DataGrid"]
+[node name="GoatsWon" type="Label" parent="HUD/Panel/DataGrid"]
 margin_top = 13.0
 margin_right = 190.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "Goats won from switching: "
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CarsWon" type="Label" parent="VBoxContainer/Panel/DataGrid"]
+[node name="CarsWon" type="Label" parent="HUD/Panel/DataGrid"]
 margin_left = 250.0
 margin_top = 13.0
 margin_right = 433.0
@@ -145,38 +143,38 @@ margin_bottom = 36.0
 rect_pivot_offset = Vector2( 105.667, 18.0946 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "Cars won from switching: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GoatsWon2" type="Label" parent="VBoxContainer/Panel/DataGrid"]
+[node name="GoatsWon2" type="Label" parent="HUD/Panel/DataGrid"]
 margin_top = 83.0
 margin_right = 190.0
 margin_bottom = 106.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "Goats won from not switching: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CarsWon2" type="Label" parent="VBoxContainer/Panel/DataGrid"]
+[node name="CarsWon2" type="Label" parent="HUD/Panel/DataGrid"]
 margin_left = 250.0
 margin_top = 83.0
 margin_right = 433.0
 margin_bottom = 106.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "Cars won from not switching: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Panel"]
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/Panel"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -189,21 +187,182 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Quit" type="Button" parent="VBoxContainer/Panel/MarginContainer2"]
-margin_top = 35.0
-margin_right = 100.0
-margin_bottom = 85.0
+[node name="Quit" type="Button" parent="HUD/Panel/MarginContainer2"]
+margin_top = 40.0
+margin_right = 99.0
+margin_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_min_size = Vector2( 100, 50 )
+rect_min_size = Vector2( 90, 40 )
 hint_tooltip = "Quits the simulation."
 size_flags_horizontal = 5
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="button_up" from="VBoxContainer/Panel/MarginContainer/Reset" to="." method="_on_Button_button_up"]
-[connection signal="button_up" from="VBoxContainer/Panel/MarginContainer2/Quit" to="." method="_on_Quit_button_up"]
+[node name="Panel" type="Panel" parent="HUD/Panel"]
+anchor_bottom = 1.0
+margin_right = 246.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Panel/Panel/HBoxContainer"]
+margin_right = 110.0
+margin_bottom = 120.0
+custom_constants/margin_left = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reset" type="Button" parent="HUD/Panel/Panel/HBoxContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 40.0
+margin_right = 110.0
+margin_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 90, 40 )
+hint_tooltip = "Resets the current simulation and begins a new one."
+size_flags_horizontal = 5
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+shortcut = SubResource( 14 )
+text = "Reset (R)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/Panel/Panel/HBoxContainer"]
+margin_left = 114.0
+margin_right = 261.0
+margin_bottom = 120.0
+custom_constants/margin_right = 20
+custom_constants/margin_left = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenOptions" type="Button" parent="HUD/Panel/Panel/HBoxContainer/MarginContainer2"]
+margin_left = 20.0
+margin_top = 40.0
+margin_right = 127.0
+margin_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 90, 40 )
+hint_tooltip = "Opens the options menu"
+size_flags_horizontal = 5
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "Options (Esc)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 7 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -1280.92, -191.539 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer5" type="MarginContainer" parent="Options"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_top = 40
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer5"]
+margin_top = 40.0
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Options/MarginContainer5/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 8 )
+text = "Monty Hall 3d"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
+margin_top = 80.0
+margin_right = 1024.0
+margin_bottom = 122.0
+custom_constants/margin_right = 100
+custom_constants/margin_left = 100
+
+[node name="ResumeButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer"]
+margin_left = 100.0
+margin_right = 924.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 9 )
+text = "Resume"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
+margin_top = 142.0
+margin_right = 1024.0
+margin_bottom = 184.0
+custom_constants/margin_right = 100
+custom_constants/margin_left = 100
+
+[node name="OptionsButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer2"]
+margin_left = 100.0
+margin_right = 924.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 9 )
+text = "Options"
+
+[node name="MarginContainer3" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
+margin_top = 204.0
+margin_right = 1024.0
+margin_bottom = 246.0
+custom_constants/margin_right = 100
+custom_constants/margin_left = 100
+
+[node name="BackToMenuButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer3"]
+margin_left = 100.0
+margin_right = 924.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 9 )
+text = "Back to menu"
+
+[node name="MarginContainer4" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
+margin_top = 266.0
+margin_right = 1024.0
+margin_bottom = 308.0
+custom_constants/margin_right = 100
+custom_constants/margin_left = 100
+
+[node name="ExitButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer4"]
+margin_left = 100.0
+margin_right = 924.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 9 )
+text = "quit"
+
+[connection signal="button_up" from="HUD/Panel/MarginContainer2/Quit" to="." method="_on_Quit_button_up"]
+[connection signal="button_up" from="HUD/Panel/Panel/HBoxContainer/MarginContainer/Reset" to="." method="_on_Button_button_up"]
+[connection signal="button_up" from="HUD/Panel/Panel/HBoxContainer/MarginContainer2/OpenOptions" to="." method="_on_OpenOptions_button_up"]
+[connection signal="button_up" from="Options/MarginContainer5/VBoxContainer/MarginContainer/ResumeButton" to="." method="_on_ResumeButton_button_up"]
+[connection signal="button_up" from="Options/MarginContainer5/VBoxContainer/MarginContainer3/BackToMenuButton" to="." method="_on_BackToMenuButton_button_up"]
+[connection signal="button_up" from="Options/MarginContainer5/VBoxContainer/MarginContainer4/ExitButton" to="." method="_on_Quit_button_up"]

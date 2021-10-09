@@ -31,9 +31,6 @@ func _on_Options_button_up():
 	mainmenu.hide()
 	optionsmenu.show()
 
-
-
-
 func _on_BackToMainMenu_button_up():
 	optionsmenu.hide()
 	mainmenu.show()

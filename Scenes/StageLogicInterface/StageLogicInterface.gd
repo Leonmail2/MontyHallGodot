@@ -44,10 +44,11 @@ func initalize_trial():
 		for i in range(config.size()):
 			stage.set_item_behind_door(i,config[i])
 		stage.enable_clickable_doors()
-	hud.set_text("Choose a door")
-	stage.disable_all_choice_overlay()
-	stage.close_all_now()
-	camera.set_interpolation_target(stage.overviewcampos.global_transform)
+		hud.set_text("Choose a door")
+		stage.disable_all_choice_overlay()
+		stage.close_all_now()
+		camera.set_interpolation_target(stage.overviewcampos.global_transform)
+	
 
 func check_if_player_wins():
 	trial_finished = true
@@ -94,6 +95,7 @@ func on_MontyHallLogic_door_reveal_chosen(door):
 				stage.enable_clickable_door(i)
 
 func zoom_in_reveal_zoom_out(door):
+	hud.disable_reset()
 	stage.disable_clickable_doors()
 	match door:
 		0:
@@ -107,6 +109,7 @@ func zoom_in_reveal_zoom_out(door):
 	yield(stage,"door_finished_revealing")
 	camera.set_interpolation_target(stage.overviewcampos.global_transform)
 	yield(camera,"finished_interpolating")
+	hud.enable_reset()
 	
 
 

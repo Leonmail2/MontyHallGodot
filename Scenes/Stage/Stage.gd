@@ -53,9 +53,13 @@ func reveal_all():
 	Door3AnimManager.play("OpeningNoBounce")
 
 func close_all_now():
+	Door1AnimManager.stop()
+	Door2AnimManager.stop()
+	Door3AnimManager.stop()
 	Door1AnimManager.play("Closed")
 	Door2AnimManager.play("Closed")
 	Door3AnimManager.play("Closed")
+	
 
 func close_all():
 	Door1AnimManager.play("Closing")
