@@ -5,14 +5,17 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
+use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 18
+size = 32
+use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 22
+size = 42
+use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="InputEventAction" id=13]
@@ -36,16 +39,22 @@ shader_param/amount = 4.0
 
 [sub_resource type="DynamicFont" id=8]
 size = 50
+use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 30
+use_filter = true
 font_data = ExtResource( 2 )
 
 [node name="HUD" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -0.287033
+margin_top = -0.286987
+margin_right = -0.286987
+margin_bottom = -0.286987
 mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
@@ -63,13 +72,14 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="HUD"]
-margin_right = 1024.0
-margin_bottom = 476.0
+margin_right = 1920.0
+margin_bottom = 876.0
 mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD/Control"]
-anchor_right = 1.0
+anchor_left = -0.00100886
+anchor_right = 0.998991
 anchor_bottom = 1.0
 margin_left = -0.8909
 margin_right = -0.890869
@@ -85,25 +95,25 @@ __meta__ = {
 [node name="VBoxContainer2" type="VBoxContainer" parent="HUD/Control/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 1004.0
-margin_bottom = 456.0
+margin_right = 1900.0
+margin_bottom = 856.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="DisplayText" type="Label" parent="HUD/Control/MarginContainer/VBoxContainer2"]
-margin_right = 984.0
+margin_right = 1880.0
 margin_bottom = 72.0
 custom_fonts/font = SubResource( 1 )
 align = 1
 
 [node name="Panel" type="Panel" parent="HUD"]
 pause_mode = 1
-margin_top = 480.0
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 0, 120 )
+margin_top = 880.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 0, 200 )
 mouse_filter = 2
 size_flags_horizontal = 3
 
@@ -111,8 +121,8 @@ size_flags_horizontal = 3
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -216.5
-margin_right = 216.5
+margin_left = -361.5
+margin_right = 361.5
 rect_clip_content = true
 size_flags_horizontal = 5
 custom_constants/vseparation = 20
@@ -123,9 +133,9 @@ __meta__ = {
 }
 
 [node name="GoatsWon" type="Label" parent="HUD/Panel/DataGrid"]
-margin_top = 13.0
-margin_right = 190.0
-margin_bottom = 36.0
+margin_top = 25.0
+margin_right = 338.0
+margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 2 )
@@ -136,10 +146,10 @@ __meta__ = {
 }
 
 [node name="CarsWon" type="Label" parent="HUD/Panel/DataGrid"]
-margin_left = 250.0
-margin_top = 13.0
-margin_right = 433.0
-margin_bottom = 36.0
+margin_left = 398.0
+margin_top = 25.0
+margin_right = 723.0
+margin_bottom = 64.0
 rect_pivot_offset = Vector2( 105.667, 18.0946 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -150,9 +160,9 @@ __meta__ = {
 }
 
 [node name="GoatsWon2" type="Label" parent="HUD/Panel/DataGrid"]
-margin_top = 83.0
-margin_right = 190.0
-margin_bottom = 106.0
+margin_top = 135.0
+margin_right = 338.0
+margin_bottom = 174.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 2 )
@@ -162,10 +172,10 @@ __meta__ = {
 }
 
 [node name="CarsWon2" type="Label" parent="HUD/Panel/DataGrid"]
-margin_left = 250.0
-margin_top = 83.0
-margin_right = 433.0
-margin_bottom = 106.0
+margin_left = 398.0
+margin_top = 135.0
+margin_right = 723.0
+margin_bottom = 174.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 2 )
@@ -175,8 +185,9 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="HUD/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
+anchor_left = 1.0003
+anchor_top = -2.61424e-10
+anchor_right = 1.0003
 anchor_bottom = 1.0
 margin_left = -119.852
 margin_top = 0.661743
@@ -188,9 +199,9 @@ __meta__ = {
 }
 
 [node name="Quit" type="Button" parent="HUD/Panel/MarginContainer2"]
-margin_top = 40.0
-margin_right = 99.0
-margin_bottom = 80.0
+margin_top = 71.0
+margin_right = 100.0
+margin_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 90, 40 )
@@ -218,8 +229,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD/Panel/Panel/HBoxContainer"]
-margin_right = 110.0
-margin_bottom = 120.0
+margin_right = 158.0
+margin_bottom = 200.0
 custom_constants/margin_left = 20
 __meta__ = {
 "_edit_use_anchors_": false
@@ -227,9 +238,9 @@ __meta__ = {
 
 [node name="Reset" type="Button" parent="HUD/Panel/Panel/HBoxContainer/MarginContainer"]
 margin_left = 20.0
-margin_top = 40.0
-margin_right = 110.0
-margin_bottom = 80.0
+margin_top = 71.0
+margin_right = 158.0
+margin_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 90, 40 )
@@ -244,9 +255,9 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="HUD/Panel/Panel/HBoxContainer"]
-margin_left = 114.0
-margin_right = 261.0
-margin_bottom = 120.0
+margin_left = 162.0
+margin_right = 399.0
+margin_bottom = 200.0
 custom_constants/margin_right = 20
 custom_constants/margin_left = 20
 __meta__ = {
@@ -255,9 +266,9 @@ __meta__ = {
 
 [node name="OpenOptions" type="Button" parent="HUD/Panel/Panel/HBoxContainer/MarginContainer2"]
 margin_left = 20.0
-margin_top = 40.0
-margin_right = 127.0
-margin_bottom = 80.0
+margin_top = 71.0
+margin_right = 217.0
+margin_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 90, 40 )
@@ -283,22 +294,25 @@ __meta__ = {
 [node name="MarginContainer5" type="MarginContainer" parent="Options"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 120
 custom_constants/margin_top = 40
+custom_constants/margin_left = 120
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer5"]
+margin_left = 120.0
 margin_top = 40.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 1800.0
+margin_bottom = 1080.0
 custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Options/MarginContainer5/VBoxContainer"]
-margin_right = 1024.0
+margin_right = 1680.0
 margin_bottom = 60.0
 custom_fonts/font = SubResource( 8 )
 text = "Monty Hall 3d"
@@ -306,56 +320,56 @@ align = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
 margin_top = 80.0
-margin_right = 1024.0
+margin_right = 1680.0
 margin_bottom = 122.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
 [node name="ResumeButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer"]
 margin_left = 100.0
-margin_right = 924.0
+margin_right = 1580.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 9 )
 text = "Resume"
 
 [node name="MarginContainer2" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
 margin_top = 142.0
-margin_right = 1024.0
+margin_right = 1680.0
 margin_bottom = 184.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
 [node name="OptionsButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer2"]
 margin_left = 100.0
-margin_right = 924.0
+margin_right = 1580.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 9 )
 text = "Options"
 
 [node name="MarginContainer3" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
 margin_top = 204.0
-margin_right = 1024.0
+margin_right = 1680.0
 margin_bottom = 246.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
 [node name="BackToMenuButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer3"]
 margin_left = 100.0
-margin_right = 924.0
+margin_right = 1580.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 9 )
 text = "Back to menu"
 
 [node name="MarginContainer4" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
 margin_top = 266.0
-margin_right = 1024.0
+margin_right = 1680.0
 margin_bottom = 308.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
 [node name="ExitButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer4"]
 margin_left = 100.0
-margin_right = 924.0
+margin_right = 1580.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 9 )
 text = "quit"
