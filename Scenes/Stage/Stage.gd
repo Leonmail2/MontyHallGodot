@@ -32,7 +32,7 @@ onready var clickabledoor3 = $ClickableDoor3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	door_opening_speed = WindowAndSettingsManager.door_speed
+	#door_opening_speed = WindowAndSettingsManager.door_speed
 	Door1AnimManager.play("Closed")
 	Door2AnimManager.play("Closed")
 	Door3AnimManager.play("Closed")
