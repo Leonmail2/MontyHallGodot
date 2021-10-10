@@ -4,16 +4,17 @@ extends MarginContainer
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var resolution_selector = $Options/MarginContainer4/HBoxContainer2/ResolutionSelector
+onready var fullscreen = $Options/MarginContainer4/HBoxContainer2/Fullscreen
 onready var vsync_button = $Options/MarginContainer3/HBoxContainer2/VsyncCheckBox
 onready var speed_display = $Options/MarginContainer2/HBoxContainer/SpeedDisplay
 onready var speed_slider = $Options/MarginContainer2/HBoxContainer/SpeedSlider
-var door_speed = 0
+onready var framerate_options = $Options/MarginContainer5/HBoxContainer2/MaxFramerate
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#speed_slider.value = WindowAndSettingsManager.door_speed
-	door_speed = speed_slider.value
-	#vsync_button.pressed = WindowAndSettingsManager.vsync
+	speed_slider.value = WindowAndSettingsManager.door_speed
+	fullscreen.pressed = WindowAndSettingsManager.fullscreen
+	framerate_options.selected = WindowAndSettingsManager.max_framerate_index
+	vsync_button.pressed = WindowAndSettingsManager.vsync
 	
 		
 	#for resolution in WindowAndSettingsManager.resolutions:
@@ -25,10 +26,16 @@ func _ready():
 
 func _on_SpeedSlider_value_changed(value):
 	speed_display.text = str(value)
-	door_speed = value
-	#WindowAndSettingsManager.door_speed = value
+	WindowAndSettingsManager.set_door_speed(value,true)
 
 
 func _on_VsyncCheckBox_toggled(button_pressed):
-	#WindowAndSettingsManager.vsync = button_pressed
-	pass
+	WindowAndSettingsManager.set_vsync(button_pressed,true)
+
+
+func _on_Fullscreen_toggled(button_pressed):
+	WindowAndSettingsManager.set_fullscreen(button_pressed,true)
+
+
+func _on_MaxFramerate_item_selected(index):
+	WindowAndSettingsManager.set_max_framerate_index(index,true)

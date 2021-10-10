@@ -30,6 +30,7 @@ func _on_ExitButton_button_up():
 func _on_Options_button_up():
 	mainmenu.hide()
 	optionsmenu.show()
+	#WindowAndSettingsManager.set_fullscreen(OS.window_fullscreen,true)
 
 func _on_BackToMainMenu_button_up():
 	optionsmenu.hide()

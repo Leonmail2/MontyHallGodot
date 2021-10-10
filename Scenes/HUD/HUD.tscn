@@ -18,11 +18,11 @@ size = 42
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="InputEventAction" id=13]
+[sub_resource type="InputEventAction" id=4]
 action = "reset_simulation"
 
-[sub_resource type="ShortCut" id=14]
-shortcut = SubResource( 13 )
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
@@ -38,7 +38,7 @@ shader = SubResource( 6 )
 shader_param/amount = 4.0
 
 [sub_resource type="DynamicFont" id=8]
-size = 50
+size = 80
 use_filter = true
 font_data = ExtResource( 2 )
 
@@ -95,7 +95,7 @@ __meta__ = {
 [node name="VBoxContainer2" type="VBoxContainer" parent="HUD/Control/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 1900.0
+margin_right = 1899.0
 margin_bottom = 856.0
 mouse_filter = 2
 __meta__ = {
@@ -103,7 +103,7 @@ __meta__ = {
 }
 
 [node name="DisplayText" type="Label" parent="HUD/Control/MarginContainer/VBoxContainer2"]
-margin_right = 1880.0
+margin_right = 1879.0
 margin_bottom = 72.0
 custom_fonts/font = SubResource( 1 )
 align = 1
@@ -118,14 +118,14 @@ mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="DataGrid" type="GridContainer" parent="HUD/Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_left = 0.499583
+anchor_top = -0.00400452
+anchor_right = 0.499583
+anchor_bottom = 0.995995
 margin_left = -361.5
 margin_right = 361.5
 rect_clip_content = true
 size_flags_horizontal = 5
-custom_constants/vseparation = 20
 custom_constants/hseparation = 60
 columns = 2
 __meta__ = {
@@ -133,9 +133,9 @@ __meta__ = {
 }
 
 [node name="GoatsWon" type="Label" parent="HUD/Panel/DataGrid"]
-margin_top = 25.0
+margin_top = 29.0
 margin_right = 338.0
-margin_bottom = 64.0
+margin_bottom = 68.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 2 )
@@ -147,9 +147,9 @@ __meta__ = {
 
 [node name="CarsWon" type="Label" parent="HUD/Panel/DataGrid"]
 margin_left = 398.0
-margin_top = 25.0
+margin_top = 29.0
 margin_right = 723.0
-margin_bottom = 64.0
+margin_bottom = 68.0
 rect_pivot_offset = Vector2( 105.667, 18.0946 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -160,9 +160,9 @@ __meta__ = {
 }
 
 [node name="GoatsWon2" type="Label" parent="HUD/Panel/DataGrid"]
-margin_top = 135.0
+margin_top = 131.0
 margin_right = 338.0
-margin_bottom = 174.0
+margin_bottom = 170.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 2 )
@@ -173,9 +173,9 @@ __meta__ = {
 
 [node name="CarsWon2" type="Label" parent="HUD/Panel/DataGrid"]
 margin_left = 398.0
-margin_top = 135.0
+margin_top = 131.0
 margin_right = 723.0
-margin_bottom = 174.0
+margin_bottom = 170.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 2 )
@@ -199,14 +199,15 @@ __meta__ = {
 }
 
 [node name="Quit" type="Button" parent="HUD/Panel/MarginContainer2"]
+margin_left = 5.0
 margin_top = 71.0
-margin_right = 100.0
+margin_right = 95.0
 margin_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 90, 40 )
 hint_tooltip = "Quits the simulation."
-size_flags_horizontal = 5
+size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 3 )
 text = "Quit"
@@ -216,7 +217,7 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="HUD/Panel"]
 anchor_bottom = 1.0
-margin_right = 246.0
+margin_right = 411.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -224,6 +225,7 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -245,10 +247,10 @@ grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 90, 40 )
 hint_tooltip = "Resets the current simulation and begins a new one."
-size_flags_horizontal = 5
+size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 3 )
-shortcut = SubResource( 14 )
+shortcut = SubResource( 5 )
 text = "Reset (R)"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -273,7 +275,7 @@ grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 90, 40 )
 hint_tooltip = "Opens the options menu"
-size_flags_horizontal = 5
+size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 3 )
 text = "Options (Esc)"
@@ -282,7 +284,6 @@ __meta__ = {
 }
 
 [node name="Options" type="ColorRect" parent="."]
-visible = false
 material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -313,15 +314,15 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Options/MarginContainer5/VBoxContainer"]
 margin_right = 1680.0
-margin_bottom = 60.0
+margin_bottom = 96.0
 custom_fonts/font = SubResource( 8 )
 text = "Monty Hall 3d"
 align = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
-margin_top = 80.0
+margin_top = 116.0
 margin_right = 1680.0
-margin_bottom = 122.0
+margin_bottom = 158.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
@@ -333,9 +334,9 @@ custom_fonts/font = SubResource( 9 )
 text = "Resume"
 
 [node name="MarginContainer2" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
-margin_top = 142.0
+margin_top = 178.0
 margin_right = 1680.0
-margin_bottom = 184.0
+margin_bottom = 220.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
@@ -347,9 +348,9 @@ custom_fonts/font = SubResource( 9 )
 text = "Options"
 
 [node name="MarginContainer3" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
-margin_top = 204.0
+margin_top = 240.0
 margin_right = 1680.0
-margin_bottom = 246.0
+margin_bottom = 282.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
@@ -361,9 +362,9 @@ custom_fonts/font = SubResource( 9 )
 text = "Back to menu"
 
 [node name="MarginContainer4" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
-margin_top = 266.0
+margin_top = 302.0
 margin_right = 1680.0
-margin_bottom = 308.0
+margin_bottom = 344.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
