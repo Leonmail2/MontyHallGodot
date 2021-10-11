@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Fonts/bebas_neue/BebasNeue-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/MainMenu/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/MainMenu/Options.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Fonts/bebas_neue.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Scenes/MainMenu/Version.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -20,6 +21,11 @@ size = 30
 use_filter = true
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 30
+use_filter = true
+font_data = ExtResource( 1 )
+
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,7 +35,6 @@ __meta__ = {
 }
 
 [node name="MainMenu" type="MarginContainer" parent="."]
-visible = false
 anchor_left = -0.000621414
 anchor_top = -0.00110462
 anchor_right = 0.999379
@@ -54,15 +59,15 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="MainMenu/VBoxContainer"]
 margin_right = 1720.0
-margin_bottom = 60.0
+margin_bottom = 96.0
 custom_fonts/font = SubResource( 1 )
 text = "Monty Hall 3d"
 align = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenu/VBoxContainer"]
-margin_top = 80.0
+margin_top = 116.0
 margin_right = 1720.0
-margin_bottom = 122.0
+margin_bottom = 158.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
@@ -74,9 +79,9 @@ custom_fonts/font = SubResource( 2 )
 text = "Start"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MainMenu/VBoxContainer"]
-margin_top = 142.0
+margin_top = 178.0
 margin_right = 1720.0
-margin_bottom = 184.0
+margin_bottom = 220.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
@@ -88,9 +93,9 @@ custom_fonts/font = SubResource( 2 )
 text = "Options"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MainMenu/VBoxContainer"]
-margin_top = 204.0
+margin_top = 240.0
 margin_right = 1720.0
-margin_bottom = 246.0
+margin_bottom = 282.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
@@ -104,12 +109,14 @@ text = "quit"
 [node name="Options" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_top = 50
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Options" type="VBoxContainer" parent="Options"]
+margin_top = 50.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 custom_constants/separation = 20
@@ -261,6 +268,32 @@ custom_fonts/font = ExtResource( 4 )
 text = "60"
 items = [ "30", null, false, 30, null, "60", null, false, 60, null, "90", null, false, 90, null, "120", null, false, 120, null, "unlimited", null, false, 0, null ]
 selected = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.00114
+anchor_right = 1.0
+anchor_bottom = 1.00114
+margin_left = -228.0
+margin_top = -86.0
+custom_constants/margin_right = 20
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Version" type="Label" parent="MarginContainer"]
+margin_top = 20.0
+margin_right = 208.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 4 )
+text = "Version x.y.z"
+align = 1
+valign = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="button_up" from="MainMenu/VBoxContainer/MarginContainer/StartButton" to="." method="_on_StartButton_button_up"]
 [connection signal="button_up" from="MainMenu/VBoxContainer/MarginContainer2/OptionsButton" to="." method="_on_Options_button_up"]
