@@ -1,6 +1,6 @@
 extends Node
 signal door_speed_updated
-
+signal options_updated
 # Declare member variables here. Examples:
 # var a = 2
 export var default_settings = {"fullscreen":true,"vsync":false,"door_speed":1,"max_framerate_index":1}
@@ -18,18 +18,21 @@ var fullscreen = true setget set_fullscreen
 var max_framerate_index = 1 setget set_max_framerate_index
 
 func set_door_speed(speed,writetofile=false):
+	emit_signal("options_updated")
 	door_speed = speed
 	emit_signal("door_speed_updated",speed)
 	if writetofile:
 		write_to_settings_file()
 
 func set_fullscreen(new_fullscreen,writetofile=false):
+	emit_signal("options_updated")
 	fullscreen = new_fullscreen
 	OS.window_fullscreen = fullscreen
 	if writetofile:
 		write_to_settings_file()
 
 func set_vsync(new_vsync,writetofile=false):
+	emit_signal("options_updated")
 	vsync = new_vsync
 	OS.vsync_enabled = vsync
 	if writetofile:
@@ -37,6 +40,7 @@ func set_vsync(new_vsync,writetofile=false):
 
 func set_max_framerate_index(framerate_index,writetofile=false):
 	if framerate_index >= 0 and framerate_index < default_max_framerates.size():
+		emit_signal("options_updated")
 		max_framerate_index = framerate_index
 		Engine.target_fps = default_max_framerates[framerate_index]
 		if writetofile:
@@ -46,10 +50,11 @@ func set_max_framerate_index(framerate_index,writetofile=false):
 
 
 func _ready():
+	#get_tree().get_root().connect("size_changed",self,"_on_root_size_changed")
 	var result = read_settings_from_file()
 	if not result:
-		#reset_settings_file_to_default()
-		#read_settings_from_file()
+		reset_settings_file_to_default()
+		read_settings_from_file()
 		pass
 	
 	OS.min_window_size = Vector2(int(OS.get_screen_size().x*0.6),int(OS.get_screen_size().y*0.6))

@@ -11,18 +11,19 @@ onready var speed_slider = $Options/MarginContainer2/HBoxContainer/SpeedSlider
 onready var framerate_options = $Options/MarginContainer5/HBoxContainer2/MaxFramerate
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	speed_slider.value = WindowAndSettingsManager.door_speed
-	fullscreen.pressed = WindowAndSettingsManager.fullscreen
-	framerate_options.selected = WindowAndSettingsManager.max_framerate_index
-	vsync_button.pressed = WindowAndSettingsManager.vsync
-	
+	update_options()
+	WindowAndSettingsManager.connect("options_updated",self,"update_options")
 		
 	#for resolution in WindowAndSettingsManager.resolutions:
 	#	resolution_selector.add_item(str(resolution.x)+"x"+str(resolution.y),WindowAndSettingsManager.resolutions.find(resolution))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #
-
+func update_options():
+	speed_slider.value = WindowAndSettingsManager.door_speed
+	fullscreen.pressed = WindowAndSettingsManager.fullscreen
+	framerate_options.selected = WindowAndSettingsManager.max_framerate_index
+	vsync_button.pressed = WindowAndSettingsManager.vsync
 
 func _on_SpeedSlider_value_changed(value):
 	speed_display.text = str(value)
@@ -39,3 +40,8 @@ func _on_Fullscreen_toggled(button_pressed):
 
 func _on_MaxFramerate_item_selected(index):
 	WindowAndSettingsManager.set_max_framerate_index(index,true)
+
+
+func _on_Options_visibility_changed():
+	update_options()
+
