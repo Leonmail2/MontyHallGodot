@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/HUD/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/bebas_neue/BebasNeue-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Fonts/bebas_neue.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/HUD/Settings.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -160,9 +162,9 @@ __meta__ = {
 }
 
 [node name="GoatsWon2" type="Label" parent="HUD/Panel/DataGrid"]
-margin_top = 131.0
+margin_top = 130.0
 margin_right = 338.0
-margin_bottom = 170.0
+margin_bottom = 169.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 2 )
@@ -173,9 +175,9 @@ __meta__ = {
 
 [node name="CarsWon2" type="Label" parent="HUD/Panel/DataGrid"]
 margin_left = 398.0
-margin_top = 131.0
+margin_top = 130.0
 margin_right = 723.0
-margin_bottom = 170.0
+margin_bottom = 169.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 2 )
@@ -292,7 +294,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer5" type="MarginContainer" parent="Options"]
+[node name="Menu" type="MarginContainer" parent="Options"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 120
@@ -302,7 +304,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer5"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/Menu"]
 margin_left = 120.0
 margin_top = 40.0
 margin_right = 1800.0
@@ -312,72 +314,233 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Options/MarginContainer5/VBoxContainer"]
+[node name="Label" type="Label" parent="Options/Menu/VBoxContainer"]
 margin_right = 1680.0
 margin_bottom = 96.0
 custom_fonts/font = SubResource( 8 )
 text = "Monty Hall 3d"
 align = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Options/Menu/VBoxContainer"]
 margin_top = 116.0
 margin_right = 1680.0
 margin_bottom = 158.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
-[node name="ResumeButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer"]
+[node name="ResumeButton" type="Button" parent="Options/Menu/VBoxContainer/MarginContainer"]
 margin_left = 100.0
 margin_right = 1580.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 9 )
 text = "Resume"
 
-[node name="MarginContainer2" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="Options/Menu/VBoxContainer"]
 margin_top = 178.0
 margin_right = 1680.0
 margin_bottom = 220.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
-[node name="OptionsButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer2"]
+[node name="OptionsButton" type="Button" parent="Options/Menu/VBoxContainer/MarginContainer2"]
 margin_left = 100.0
 margin_right = 1580.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 9 )
 text = "Options"
 
-[node name="MarginContainer3" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="Options/Menu/VBoxContainer"]
 margin_top = 240.0
 margin_right = 1680.0
 margin_bottom = 282.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
-[node name="BackToMenuButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer3"]
+[node name="BackToMenuButton" type="Button" parent="Options/Menu/VBoxContainer/MarginContainer3"]
 margin_left = 100.0
 margin_right = 1580.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 9 )
 text = "Back to menu"
 
-[node name="MarginContainer4" type="MarginContainer" parent="Options/MarginContainer5/VBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="Options/Menu/VBoxContainer"]
 margin_top = 302.0
 margin_right = 1680.0
 margin_bottom = 344.0
 custom_constants/margin_right = 100
 custom_constants/margin_left = 100
 
-[node name="ExitButton" type="Button" parent="Options/MarginContainer5/VBoxContainer/MarginContainer4"]
+[node name="ExitButton" type="Button" parent="Options/Menu/VBoxContainer/MarginContainer4"]
 margin_left = 100.0
 margin_right = 1580.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 9 )
 text = "quit"
 
+[node name="Settings" type="MarginContainer" parent="Options"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 120
+custom_constants/margin_top = 40
+custom_constants/margin_left = 120
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/Settings"]
+margin_left = 120.0
+margin_top = 40.0
+margin_right = 1800.0
+margin_bottom = 1080.0
+custom_constants/separation = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="Options/Settings/VBoxContainer"]
+margin_right = 1680.0
+margin_bottom = 42.0
+custom_constants/margin_right = 100
+custom_constants/margin_left = 100
+
+[node name="ExitButton" type="Button" parent="Options/Settings/VBoxContainer/MarginContainer"]
+margin_left = 100.0
+margin_right = 1580.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 9 )
+text = "Back"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Options/Settings/VBoxContainer"]
+margin_top = 62.0
+margin_right = 1680.0
+margin_bottom = 98.0
+custom_constants/margin_right = 100
+custom_constants/margin_top = 0
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options/Settings/VBoxContainer/MarginContainer2"]
+margin_left = 100.0
+margin_right = 1580.0
+margin_bottom = 36.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Options/Settings/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 3 )
+text = "Door Opening Speed:"
+
+[node name="SpeedDisplay" type="Label" parent="Options/Settings/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 204.0
+margin_right = 234.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 3 )
+text = "1.0"
+
+[node name="SpeedSlider" type="HSlider" parent="Options/Settings/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 238.0
+margin_right = 1480.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.2
+max_value = 3.0
+step = 0.1
+value = 1.0
+
+[node name="MarginContainer3" type="MarginContainer" parent="Options/Settings/VBoxContainer"]
+margin_top = 118.0
+margin_right = 1680.0
+margin_bottom = 158.0
+custom_constants/margin_right = 100
+custom_constants/margin_top = 0
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Options/Settings/VBoxContainer/MarginContainer3"]
+margin_left = 100.0
+margin_right = 1580.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Options/Settings/VBoxContainer/MarginContainer3/HBoxContainer2"]
+margin_top = 2.0
+margin_right = 64.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 3 )
+text = "Vsync:"
+
+[node name="VsyncCheckBox" type="CheckButton" parent="Options/Settings/VBoxContainer/MarginContainer3/HBoxContainer2"]
+margin_left = 68.0
+margin_right = 144.0
+margin_bottom = 40.0
+
+[node name="MarginContainer4" type="MarginContainer" parent="Options/Settings/VBoxContainer"]
+margin_top = 178.0
+margin_right = 1680.0
+margin_bottom = 222.0
+custom_constants/margin_right = 100
+custom_constants/margin_top = 0
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Options/Settings/VBoxContainer/MarginContainer4"]
+margin_left = 100.0
+margin_right = 1580.0
+margin_bottom = 44.0
+
+[node name="Label" type="Label" parent="Options/Settings/VBoxContainer/MarginContainer4/HBoxContainer2"]
+margin_top = 4.0
+margin_right = 117.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Fullscreen:"
+
+[node name="Fullscreen" type="CheckButton" parent="Options/Settings/VBoxContainer/MarginContainer4/HBoxContainer2"]
+margin_left = 121.0
+margin_right = 197.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
+
+[node name="MarginContainer5" type="MarginContainer" parent="Options/Settings/VBoxContainer"]
+margin_top = 242.0
+margin_right = 1680.0
+margin_bottom = 284.0
+custom_constants/margin_right = 100
+custom_constants/margin_top = 0
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Options/Settings/VBoxContainer/MarginContainer5"]
+margin_left = 100.0
+margin_right = 1580.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="Options/Settings/VBoxContainer/MarginContainer5/HBoxContainer2"]
+margin_top = 3.0
+margin_right = 163.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 3 )
+text = "Max framerate: "
+
+[node name="MaxFramerate" type="OptionButton" parent="Options/Settings/VBoxContainer/MarginContainer5/HBoxContainer2"]
+margin_left = 167.0
+margin_right = 220.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 3 )
+text = "60"
+items = [ "30", null, false, 30, null, "60", null, false, 60, null, "90", null, false, 90, null, "120", null, false, 120, null, "unlimited", null, false, 0, null ]
+selected = 1
+
 [connection signal="button_up" from="HUD/Panel/MarginContainer2/Quit" to="." method="_on_Quit_button_up"]
 [connection signal="button_up" from="HUD/Panel/Panel/HBoxContainer/MarginContainer/Reset" to="." method="_on_Button_button_up"]
 [connection signal="button_up" from="HUD/Panel/Panel/HBoxContainer/MarginContainer2/OpenOptions" to="." method="_on_OpenOptions_button_up"]
-[connection signal="button_up" from="Options/MarginContainer5/VBoxContainer/MarginContainer/ResumeButton" to="." method="_on_ResumeButton_button_up"]
-[connection signal="button_up" from="Options/MarginContainer5/VBoxContainer/MarginContainer3/BackToMenuButton" to="." method="_on_BackToMenuButton_button_up"]
-[connection signal="button_up" from="Options/MarginContainer5/VBoxContainer/MarginContainer4/ExitButton" to="." method="_on_Quit_button_up"]
+[connection signal="button_up" from="Options/Menu/VBoxContainer/MarginContainer/ResumeButton" to="." method="_on_ResumeButton_button_up"]
+[connection signal="button_up" from="Options/Menu/VBoxContainer/MarginContainer2/OptionsButton" to="." method="_on_OptionsButton_button_up"]
+[connection signal="button_up" from="Options/Menu/VBoxContainer/MarginContainer3/BackToMenuButton" to="." method="_on_BackToMenuButton_button_up"]
+[connection signal="button_up" from="Options/Menu/VBoxContainer/MarginContainer4/ExitButton" to="." method="_on_Quit_button_up"]
+[connection signal="visibility_changed" from="Options/Settings" to="Options/Settings" method="_on_Settings_visibility_changed"]
+[connection signal="button_up" from="Options/Settings/VBoxContainer/MarginContainer/ExitButton" to="." method="_on_ExitButton_button_up"]
+[connection signal="value_changed" from="Options/Settings/VBoxContainer/MarginContainer2/HBoxContainer/SpeedSlider" to="Options/Settings" method="_on_SpeedSlider_value_changed"]
+[connection signal="toggled" from="Options/Settings/VBoxContainer/MarginContainer3/HBoxContainer2/VsyncCheckBox" to="Options/Settings" method="_on_VsyncCheckBox_toggled"]
+[connection signal="toggled" from="Options/Settings/VBoxContainer/MarginContainer4/HBoxContainer2/Fullscreen" to="Options/Settings" method="_on_Fullscreen_toggled"]
+[connection signal="item_selected" from="Options/Settings/VBoxContainer/MarginContainer5/HBoxContainer2/MaxFramerate" to="Options/Settings" method="_on_MaxFramerate_item_selected"]

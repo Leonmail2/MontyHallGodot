@@ -126,7 +126,6 @@ func write_to_settings_file():
 	settings["vsync"] = vsync
 	settings["door_speed"] = door_speed
 	settings["max_framerate_index"] = max_framerate_index
-	print(JSON.print(settings))
 	file.store_line(JSON.print(settings))
 	file.close()
 	

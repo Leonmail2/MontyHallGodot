@@ -13,6 +13,7 @@ onready var options = $Options
 onready var hud = $HUD
 
 var is_in_options = false
+var is_in_settings = false
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -73,11 +74,38 @@ func _on_BackToMenuButton_button_up():
 
 func _on_ResumeButton_button_up():
 	is_in_options = false
-	$Options.hide()
+	hide_options()
 	get_tree().paused = false
+
+func hide_options():
+	hide_settings()
+	$Options.hide()
+	
+
+func hide_settings():
+	is_in_settings = false
+	$Options/Settings.hide()
+	$Options/Menu.show()
+
+func show_settings():
+	is_in_settings = true
+	$Options/Settings.show()
+	$Options/Menu.hide()
+	
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		is_in_options = !is_in_options
-		get_tree().paused = is_in_options
-		$Options.visible = is_in_options
+		if is_in_settings:
+			hide_settings()
+		else:
+			is_in_options = !is_in_options
+			get_tree().paused = is_in_options
+			$Options.visible = is_in_options
+
+
+func _on_OptionsButton_button_up():
+	show_settings()
+
+
+func _on_ExitButton_button_up():
+	hide_settings()
