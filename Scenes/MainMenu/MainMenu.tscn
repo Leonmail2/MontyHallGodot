@@ -265,6 +265,7 @@ selected = 1
 [connection signal="button_up" from="MainMenu/VBoxContainer/MarginContainer/StartButton" to="." method="_on_StartButton_button_up"]
 [connection signal="button_up" from="MainMenu/VBoxContainer/MarginContainer2/OptionsButton" to="." method="_on_Options_button_up"]
 [connection signal="button_up" from="MainMenu/VBoxContainer/MarginContainer3/ExitButton" to="." method="_on_ExitButton_button_up"]
+[connection signal="visibility_changed" from="Options" to="Options" method="_on_Options_visibility_changed"]
 [connection signal="button_up" from="Options/Options/MarginContainer/BackToMainMenu" to="." method="_on_BackToMainMenu_button_up"]
 [connection signal="value_changed" from="Options/Options/MarginContainer2/HBoxContainer/SpeedSlider" to="Options" method="_on_SpeedSlider_value_changed"]
 [connection signal="toggled" from="Options/Options/MarginContainer3/HBoxContainer2/VsyncCheckBox" to="Options" method="_on_VsyncCheckBox_toggled"]

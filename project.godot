@@ -16,7 +16,8 @@ _global_script_class_icons={
 
 config/name="MontyHallGodot"
 run/main_scene="res://Scenes/Main/Main.tscn"
-config/icon="res://icon.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://Assets/Icons/icon.png"
 
 [autoload]
 
