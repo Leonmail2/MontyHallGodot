@@ -6,4 +6,18 @@ The Monty Hall Problem is one of the most popular examples of just how unintuiti
 
 Download the project and open it in the Godot editor. Go to Project -> Export and select the export template of your choice (Note: you may have to download and install the export templates for the Godot Engine if you do not already have them installed)
 
-Builds can be found in the releases section: *add link here*
+Builds can be found in the [releases section.](https://github.com/Leonmail2/MontyHallGodot/releases/)
+
+## Trial Results
+
+The results of all trials conducted can be found in the Godot user data folder.
+
+For Mac users, go to finder and press Command+Shift+G and copy paste this into the window:
+`~/Library/Application Support/Godot/app_userdata/MontyHallGodot/`
+Hit Return/Enter and you will find the trial data and the settings.
+
+For Windows users, you will find the data in this folder:
+`C:\Users\<username>\AppData\Roaming\Godot\app_userdata\MontyHallGodot\`
+
+For Linux users, the data should be found in this folder:
+`~/.local/share/godot/app_userdata/MontyHallGodot`
