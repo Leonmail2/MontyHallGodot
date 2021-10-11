@@ -43,5 +43,7 @@ func _on_MaxFramerate_item_selected(index):
 
 
 func _on_Options_visibility_changed():
+	if OS.window_fullscreen != WindowAndSettingsManager.fullscreen:
+		WindowAndSettingsManager.set_fullscreen(OS.window_fullscreen,true)
 	update_options()
 

@@ -18,30 +18,30 @@ var fullscreen = true setget set_fullscreen
 var max_framerate_index = 1 setget set_max_framerate_index
 
 func set_door_speed(speed,writetofile=false):
-	emit_signal("options_updated")
 	door_speed = speed
+	emit_signal("options_updated")
 	emit_signal("door_speed_updated",speed)
 	if writetofile:
 		write_to_settings_file()
 
 func set_fullscreen(new_fullscreen,writetofile=false):
-	emit_signal("options_updated")
 	fullscreen = new_fullscreen
+	emit_signal("options_updated")
 	OS.window_fullscreen = fullscreen
 	if writetofile:
 		write_to_settings_file()
 
 func set_vsync(new_vsync,writetofile=false):
-	emit_signal("options_updated")
 	vsync = new_vsync
+	emit_signal("options_updated")
 	OS.vsync_enabled = vsync
 	if writetofile:
 		write_to_settings_file()
 
 func set_max_framerate_index(framerate_index,writetofile=false):
 	if framerate_index >= 0 and framerate_index < default_max_framerates.size():
-		emit_signal("options_updated")
 		max_framerate_index = framerate_index
+		emit_signal("options_updated")
 		Engine.target_fps = default_max_framerates[framerate_index]
 		if writetofile:
 			write_to_settings_file()
@@ -52,10 +52,9 @@ func set_max_framerate_index(framerate_index,writetofile=false):
 func _ready():
 	#get_tree().get_root().connect("size_changed",self,"_on_root_size_changed")
 	var result = read_settings_from_file()
-	if not result:
+	if result != OK:
 		reset_settings_file_to_default()
 		read_settings_from_file()
-		pass
 	
 	OS.min_window_size = Vector2(int(OS.get_screen_size().x*0.6),int(OS.get_screen_size().y*0.6))
 	OS.window_fullscreen = fullscreen
@@ -70,34 +69,39 @@ func read_settings_from_file():
 	var data = file.get_as_text()
 	file.close()
 	if data == "":
-		return false
+		return ERR_INVALID_DATA
 	print(data)
 	var data_parse = JSON.parse(data)
 	if data_parse.error != OK:
-		return false
+		return ERR_PARSE_ERROR
 	if typeof(data_parse.result) == TYPE_DICTIONARY:
 		var keys = data_parse.result.keys()
-		print(keys)
 		if default_settings.keys() == keys:
 			if typeof(data_parse.result["fullscreen"]) == TYPE_BOOL:
 				fullscreen = data_parse.result["fullscreen"]
-			else: return false
+			else:
+				return ERR_INVALID_DATA
 			
 			if typeof(data_parse.result["vsync"]) == TYPE_BOOL:
 				vsync = data_parse.result["vsync"]
-			else: return false
+			else: 
+				return ERR_INVALID_DATA
 			
 			if typeof(data_parse.result["door_speed"]) == TYPE_REAL or typeof(data_parse.result["door_speed"]) == TYPE_INT:
 				door_speed = data_parse.result["door_speed"]
-			else: return false
+			else:
+				return ERR_INVALID_DATA
 			
-			if typeof(data_parse.result["max_framerate_index"]) == TYPE_INT:
+			if typeof(data_parse.result["max_framerate_index"]) == TYPE_INT or typeof(data_parse.result["max_framerate_index"]) == TYPE_REAL:
 				if data_parse.result["max_framerate_index"] <= default_max_framerates.size() and data_parse.result["max_framerate_index"] >= 0:
-					max_framerate_index = data_parse.result["max_framerate_index"]
-			else: return false
+					max_framerate_index = int(data_parse.result["max_framerate_index"])
+			else: 
+				return ERR_INVALID_DATA
 		else:
-			return false
-	return true
+			return ERR_INVALID_DATA
+	else:
+		return ERR_PARSE_ERROR
+	return OK
 
 func reset_settings_file_to_default():
 	var file = File.new()
