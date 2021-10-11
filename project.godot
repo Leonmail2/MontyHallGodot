@@ -20,14 +20,26 @@ config/icon="res://icon.png"
 
 [autoload]
 
-MonteHallLogic="*res://Scenes/MonteHallLogic/MonteHallLogic.tscn"
-HistoryManager="*res://Scenes/HistoryManager/HistoryManager.tscn"
-StageLogicInterface="*res://Scenes/StageLogicInterface/StageLogicInterface.tscn"
+MonteHallLogic="*res://Scenes/MonteHallLogic/MonteHallLogic.gd"
+HistoryManager="*res://Scenes/HistoryManager/HistoryManager.gd"
+StageLogicInterface="*res://Scenes/StageLogicInterface/StageLogicInterface.gd"
 WindowAndSettingsManager="*res://Scenes/WindowAndSettingsManager/WindowAndSettingsManager.gd"
 
 [debug]
 
 settings/fps/force_fps=60
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
+[global]
+
+strech=false
+Version="0.1"
 
 [input]
 

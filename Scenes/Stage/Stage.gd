@@ -2,6 +2,8 @@ extends Spatial
 signal door_clicked
 signal door_finished_revealing
 
+var door_opening_speed = 1.0
+
 onready var Door1AnimManager = $door1/AnimationPlayer
 onready var Door2AnimManager = $door2/AnimationPlayer
 onready var Door3AnimManager = $door3/AnimationPlayer
@@ -30,27 +32,32 @@ onready var clickabledoor3 = $ClickableDoor3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	door_opening_speed = WindowAndSettingsManager.door_speed
 	Door1AnimManager.play("Closed")
 	Door2AnimManager.play("Closed")
 	Door3AnimManager.play("Closed")
 	doordisplay1.reset_display()
 	doordisplay2.reset_display()
 	doordisplay3.reset_display()
+	WindowAndSettingsManager.connect("door_speed_updated",self,"on_door_speed_changed")
+
+func on_door_speed_changed(speed):
+	door_opening_speed = speed
 
 func reveal_door(door_num):
 	match door_num:
 		0:
-			Door1AnimManager.play("OpeningNoBounce")
+			Door1AnimManager.play("OpeningNoBounce",-1,door_opening_speed)
 		1:
-			Door2AnimManager.play("OpeningNoBounce")
+			Door2AnimManager.play("OpeningNoBounce",-1,door_opening_speed)
 		2:
-			Door3AnimManager.play("OpeningNoBounce")
+			Door3AnimManager.play("OpeningNoBounce",-1,door_opening_speed)
 	
 
 func reveal_all():
-	Door1AnimManager.play("OpeningNoBounce")
-	Door2AnimManager.play("OpeningNoBounce")
-	Door3AnimManager.play("OpeningNoBounce")
+	Door1AnimManager.play("OpeningNoBounce",-1,door_opening_speed)
+	Door2AnimManager.play("OpeningNoBounce",-1,door_opening_speed)
+	Door3AnimManager.play("OpeningNoBounce",-1,door_opening_speed)
 
 func close_all_now():
 	Door1AnimManager.stop()

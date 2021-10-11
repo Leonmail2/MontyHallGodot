@@ -6,6 +6,7 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
+use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="BoxShape" id=2]
